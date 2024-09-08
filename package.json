@@ -1,5 +1,6 @@
 {
-  "name": "common-theme",
+  "name": "common-tailwind-theme",
   "version": "1.0.0",
-  "main": "index.js"
+  "main": "tailwind.config.js",
+  "dependencies": {}
 }
