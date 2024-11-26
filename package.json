@@ -1,6 +1,29 @@
 {
-  "name": "common-tailwind-theme",
+  "name": "mtp-shared",
   "version": "1.0.0",
-  "main": "tailwind.config.js",
-  "dependencies": {}
+  "description": "A shared library of reusable React Native components",
+  "main": "dist/index.js", 
+  "types": "dist/index.d.ts", 
+  "scripts": {
+    "build": "tsc", 
+    "clean": "rimraf dist", 
+    "prepare": "npm run clean && npm run build"
+  },
+  "dependencies": {
+    "@rneui/themed": "^4.0.0-rc.8",
+    "react-native-reanimated": "^3.16.3"
+  },
+  "peerDependencies": {
+    "react": "^18.0.0",
+    "react-native": "^0.76.3"
+  },
+  "devDependencies": {
+    "@types/react": "^18.3.12",
+    "@types/react-native": "^0.72.8",
+    "metro-react-native-babel-preset": "^0.77.0",
+    "rimraf": "^6.0.1",
+    "typescript": "^5.7.2"
+  },
+  "license": "ISC",
+  "author": ""
 }
