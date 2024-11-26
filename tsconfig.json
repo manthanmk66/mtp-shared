@@ -1,20 +1,18 @@
 {
-    "compilerOptions": {
-      "target": "ESNext",
-      "module": "ESNext",
-      "moduleResolution": "node",
-      "jsx": "react-native",
-      "esModuleInterop": true,
-      "allowSyntheticDefaultImports": true,
-      "strict": true,
-      "baseUrl": "./",
-      "paths": {
-        "@rneui/themed": ["node_modules/@rneui/themed"]
-      }
-    },
-    "include": [
-      "src/**/*.ts",
-      "src/**/*.tsx"
-    ]
-  }
-  
+  "compilerOptions": {
+    "lib": ["esnext"], // Use only ESNext libraries, not DOM
+    "skipLibCheck": true, // Optional: Skips type checks in type declaration files
+    "target": "ESNext",
+    "module": "ESNext",
+    "moduleResolution": "node",
+    "jsx": "react-native",
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "strict": true,
+    "baseUrl": "./",
+    "paths": {
+      "@rneui/themed": ["node_modules/@rneui/themed"]
+    }
+  },
+  "include": ["src/**/*.ts", "src/**/*.tsx"]
+}
