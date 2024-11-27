@@ -1,5 +1,5 @@
-import { Button as RNButton, makeStyles } from "@rneui/themed";
 import React from "react";
+import { Button as RNButton, makeStyles } from "@rneui/themed";
 const Button = ({ title, style, backgroundColor, ...otherProps }) => {
     const styles = useStyles({ backgroundColor, ...otherProps }); // Pass backgroundColor to useStyles
     return (<RNButton buttonStyle={[styles.buttonStyle, style]} // Apply combined styles
@@ -7,12 +7,30 @@ const Button = ({ title, style, backgroundColor, ...otherProps }) => {
     />);
 };
 export { Button };
+// Define the theme
+const theme = {
+    mode: "light",
+    spacing: {
+        xs: 4,
+        sm: 8,
+        md: 16,
+        lg: 24,
+        xl: 32,
+    },
+    colors: {
+        primary: "#4CAF50", // Green for primary button
+        secondary: "#FF9800", // Orange for secondary button
+        background: "#f5f5f5", // Light gray background
+    },
+};
+export default theme;
+// UseStyles hook for the button component
 const useStyles = makeStyles((theme, props) => ({
     buttonStyle: {
-        borderRadius: 0,
-        height: 40,
-        borderWidth: props.type === "clear" ? 0 : 1,
-        borderColor: props?.borderColor || theme.colors.primary,
-        backgroundColor: props.backgroundColor || theme.colors.primary, // Use backgroundColor from props or theme
+        borderRadius: 10, // Rounded corners for the button
+        height: 40, // Set button height
+        borderWidth: props.type === "clear" ? 0 : 1, // No border for 'clear' type buttons
+        borderColor: props?.borderColor || theme.colors.primary, // Use passed borderColor or theme.primary
+        backgroundColor: props.backgroundColor || theme.colors.primary, // Use passed backgroundColor or theme.primary
     },
 }));
