@@ -1,72 +1,67 @@
 import React from "react";
-import { StyleSheet, TouchableOpacity, Text, ViewStyle } from "react-native";
+import { StyleSheet, Text, TouchableOpacity, ViewStyle, TextStyle } from "react-native";
 
-// Define the ButtonProps type, including the new variant prop
+const colorVariants = {
+  primary: { backgroundColor: "#4CAF50", borderColor: "#4CAF50", textColor: "#FFFFFF" },
+  secondary: { backgroundColor: "#FF9800", borderColor: "#FF9800", textColor: "#FFFFFF" },
+  danger: { backgroundColor: "#F44336", borderColor: "#F44336", textColor: "#FFFFFF" },
+  default: { backgroundColor: "#E0E0E0", borderColor: "#BDBDBD", textColor: "#000000" },
+};
+
 type ButtonProps = {
-  title: string; // Button text
-  onPress: () => void; // Click handler
-  variant?: "primary" | "secondary" | "default"; // New variant prop
-  backgroundColor?: string; // Optional custom backgroundColor
-  borderColor?: string; // Optional custom borderColor
-  style?: ViewStyle; // Custom styles
+  title: string;
+  onPress: () => void;
+  variant?: keyof typeof colorVariants;
+  backgroundColor?: string;
+  borderColor?: string;
+  textColor?: string;
+  style?: ViewStyle;
+  textStyle?: TextStyle;
 };
 
 const Button: React.FC<ButtonProps> = ({
   title,
   onPress,
-  variant = "default", // Default to 'default' if no variant is provided
+  variant = "default",
   backgroundColor,
   borderColor,
+  textColor,
   style,
+  textStyle,
 }) => {
-  // Define default styles for variants
-  const variantStyles = {
-    primary: {
-      backgroundColor: "#4CAF50", // Green
-      borderColor: "#388E3C",
-    },
-    secondary: {
-      backgroundColor: "#FF9800", // Orange
-      borderColor: "#F57C00",
-    },
-    default: {
-      backgroundColor: "#e0e0e0", // Grey
-      borderColor: "#9e9e9e",
-    },
-  };
-
-  // Select styles based on variant
-  const selectedStyles = variantStyles[variant] || variantStyles.default;
-
+  const variantColors = colorVariants[variant] || colorVariants.default;
   return (
     <TouchableOpacity
       onPress={onPress}
       style={[
         styles.button,
-        selectedStyles,
-        { backgroundColor, borderColor }, // Allow overrides from props
-        style, // Allow custom styles from props
+        style,
+        {
+          backgroundColor: backgroundColor || variantColors.backgroundColor,
+          borderColor: borderColor || variantColors.borderColor,
+          borderWidth: 1,
+        },
       ]}
     >
-      <Text style={styles.text}>{title}</Text>
+      <Text style={[styles.text, textStyle, { color: textColor || variantColors.textColor }]}>
+        {title}
+      </Text>
     </TouchableOpacity>
   );
 };
 
-export default Button;
-
-// Define base styles
 const styles = StyleSheet.create({
   button: {
-    borderRadius: 8,
+    borderRadius: 10,
     height: 40,
     justifyContent: "center",
     alignItems: "center",
-    borderWidth: 1,
     paddingHorizontal: 16,
   },
   text: {
-    color: "#fff", // Default text color
     fontSize: 16,
+    fontWeight: "bold",
   },
 });
+
+export default Button;

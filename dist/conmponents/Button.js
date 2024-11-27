@@ -1,46 +1,38 @@
 import React from "react";
-import { StyleSheet, TouchableOpacity, Text } from "react-native";
-const Button = ({ title, onPress, variant = "default", // Default to 'default' if no variant is provided
-backgroundColor, borderColor, style, }) => {
-    // Define default styles for variants
-    const variantStyles = {
-        primary: {
-            backgroundColor: "#4CAF50", // Green
-            borderColor: "#388E3C",
-        },
-        secondary: {
-            backgroundColor: "#FF9800", // Orange
-            borderColor: "#F57C00",
-        },
-        default: {
-            backgroundColor: "#e0e0e0", // Grey
-            borderColor: "#9e9e9e",
-        },
-    };
-    // Select styles based on variant
-    const selectedStyles = variantStyles[variant] || variantStyles.default;
+import { StyleSheet, Text, TouchableOpacity } from "react-native";
+const colorVariants = {
+    primary: { backgroundColor: "#4CAF50", borderColor: "#4CAF50", textColor: "#FFFFFF" },
+    secondary: { backgroundColor: "#FF9800", borderColor: "#FF9800", textColor: "#FFFFFF" },
+    danger: { backgroundColor: "#F44336", borderColor: "#F44336", textColor: "#FFFFFF" },
+    default: { backgroundColor: "#E0E0E0", borderColor: "#BDBDBD", textColor: "#000000" },
+};
+const Button = ({ title, onPress, variant = "default", backgroundColor, borderColor, textColor, style, textStyle, }) => {
+    const variantColors = colorVariants[variant] || colorVariants.default;
     return (<TouchableOpacity onPress={onPress} style={[
             styles.button,
-            selectedStyles,
-            { backgroundColor, borderColor }, // Allow overrides from props
-            style, // Allow custom styles from props
+            style,
+            {
+                backgroundColor: backgroundColor || variantColors.backgroundColor,
+                borderColor: borderColor || variantColors.borderColor,
+                borderWidth: 1,
+            },
         ]}>
-      <Text style={styles.text}>{title}</Text>
+      <Text style={[styles.text, textStyle, { color: textColor || variantColors.textColor }]}>
+        {title}
+      </Text>
     </TouchableOpacity>);
 };
-export default Button;
-// Define base styles
 const styles = StyleSheet.create({
     button: {
-        borderRadius: 8,
+        borderRadius: 10,
         height: 40,
         justifyContent: "center",
         alignItems: "center",
-        borderWidth: 1,
         paddingHorizontal: 16,
     },
     text: {
-        color: "#fff", // Default text color
         fontSize: 16,
+        fontWeight: "bold",
     },
 });
+export default Button;
