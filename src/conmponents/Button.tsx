@@ -5,9 +5,16 @@ type Props = ButtonProps & {
   borderColor?: string;
 };
 
-const Button = ({ style, ...otherProps }: Props) => {
+const Button = ({ title, style, ...otherProps }: Props) => {
   const styles = useStyles(otherProps);
-  return <RNButton buttonStyle={[styles.buttonStyle, style]} {...otherProps} />;
+
+  return (
+    <RNButton
+      buttonStyle={[styles.buttonStyle, style]} 
+      title={title}  
+      {...otherProps}
+    />
+  );
 };
 
 export { Button };

@@ -1,8 +1,8 @@
 import { Button as RNButton, makeStyles } from '@rneui/themed';
 import React from 'react';
-const Button = ({ style, ...otherProps }) => {
+const Button = ({ title, style, ...otherProps }) => {
     const styles = useStyles(otherProps);
-    return <RNButton buttonStyle={[styles.buttonStyle, style]} {...otherProps}/>;
+    return (<RNButton buttonStyle={[styles.buttonStyle, style]} title={title} {...otherProps}/>);
 };
 export { Button };
 const useStyles = makeStyles((theme, props) => ({
