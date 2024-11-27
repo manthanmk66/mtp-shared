@@ -1,5 +1,5 @@
-import { Button as RNButton, makeStyles, ButtonProps } from '@rneui/themed';
-import React from 'react';
+import { Button as RNButton, makeStyles, ButtonProps } from "@rneui/themed";
+import React from "react";
 
 // Define the ButtonProps type, including the backgroundColor
 type Props = ButtonProps & {
@@ -22,9 +22,9 @@ export { Button };
 
 const useStyles = makeStyles((theme, props: Props) => ({
   buttonStyle: {
-    borderRadius: 10,
+    borderRadius: 0,
     height: 40,
-    borderWidth: props.type === 'clear' ? 0 : 1,
+    borderWidth: props.type === "clear" ? 0 : 1,
     borderColor: props?.borderColor || theme.colors.primary,
     backgroundColor: props.backgroundColor || theme.colors.primary, // Use backgroundColor from props or theme
   },
