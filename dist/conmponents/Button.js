@@ -20,7 +20,7 @@ const theme = {
     colors: {
         primary: "#4CAF50", // Green for primary button
         secondary: "#FF9800", // Orange for secondary button
-        background: "#f5f5f5", // Light gray background
+        background: "#f5f5f5",
     },
 };
 export default theme;
@@ -31,6 +31,6 @@ const useStyles = makeStyles((theme, props) => ({
         height: 40, // Set button height
         borderWidth: props.type === "clear" ? 0 : 1, // No border for 'clear' type buttons
         borderColor: props?.borderColor || theme.colors.primary, // Use passed borderColor or theme.primary
-        backgroundColor: props.backgroundColor || theme.colors.primary, // Use passed backgroundColor or theme.primary
+        backgroundColor: props.backgroundColor || theme.colors.primary,
     },
 }));
