@@ -1,2 +1,1 @@
-export * from "./conmponents/Button"
-export * from "./styles/theme"
+export { default as Button } from "./conmponents/Button";

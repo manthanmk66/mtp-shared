@@ -1,51 +1,67 @@
 import React from "react";
-import { Button as RNButton, makeStyles, ButtonProps, Theme } from "@rneui/themed";
+import { StyleSheet, Text, TouchableOpacity, ViewStyle, TextStyle } from "react-native";
 
-// Define the ButtonProps type, including backgroundColor and borderColor
-type Props = ButtonProps & {
-  backgroundColor?: string; // Optional backgroundColor
-  borderColor?: string; // Optional borderColor
+const colorVariants = {
+  primary: { backgroundColor: "#4CAF50", borderColor: "#4CAF50", textColor: "#FFFFFF" },
+  secondary: { backgroundColor: "#FF9800", borderColor: "#FF9800", textColor: "#FFFFFF" },
+  danger: { backgroundColor: "#F44336", borderColor: "#F44336", textColor: "#FFFFFF" },
+  default: { backgroundColor: "#E0E0E0", borderColor: "#BDBDBD", textColor: "#000000" },
 };
 
-const Button = ({ title, style, backgroundColor, ...otherProps }: Props) => {
-  const styles = useStyles({ backgroundColor, ...otherProps }); // Pass backgroundColor to useStyles
+type ButtonProps = {
+  title: string;
+  onPress: () => void;
+  variant?: keyof typeof colorVariants;
+  backgroundColor?: string;
+  borderColor?: string;
+  textColor?: string;
+  style?: ViewStyle;
+  textStyle?: TextStyle;
+};
+
+const Button: React.FC<ButtonProps> = ({
+  title,
+  onPress,
+  variant = "default",
+  backgroundColor,
+  borderColor,
+  textColor,
+  style,
+  textStyle,
+}) => {
+  const variantColors = colorVariants[variant] || colorVariants.default;
   return (
-    <RNButton
-      buttonStyle={[styles.buttonStyle, style]} // Apply combined styles
-      title={title}
-      {...otherProps} // Spread other props (e.g., onPress, type)
-    />
+    <TouchableOpacity
+      onPress={onPress}
+      style={[
+        styles.button,
+        style,
+        {
+          backgroundColor: backgroundColor || variantColors.backgroundColor,
+          borderColor: borderColor || variantColors.borderColor,
+          borderWidth: 1,
+        },
+      ]}
+    >
+      <Text style={[styles.text, textStyle, { color: textColor || variantColors.textColor }]}>
+        {title}
+      </Text>
+    </TouchableOpacity>
   );
 };
 
-export { Button };
-
-// Define the theme
-const theme: Theme = {
-  mode: "light",
-  spacing: {
-    xs: 4,
-    sm: 8,
-    md: 16,
-    lg: 24,
-    xl: 32,
+const styles = StyleSheet.create({
+  button: {
+    borderRadius: 10,
+    height: 40,
+    justifyContent: "center",
+    alignItems: "center",
+    paddingHorizontal: 16,
   },
-  colors: {
-    primary: "#4CAF50", // Green for primary button
-    secondary: "#FF9800", // Orange for secondary button
-    background: "#f5f5f5", 
+  text: {
+    fontSize: 16,
+    fontWeight: "bold",
   },
-};
+});
 
-export default theme;
-
-// UseStyles hook for the button component
-const useStyles = makeStyles((theme, props: Props) => ({
-  buttonStyle: {
-    borderRadius: 10, // Rounded corners for the button
-    height: 40, // Set button height
-    borderWidth: props.type === "clear" ? 0 : 1, // No border for 'clear' type buttons
-    borderColor: props?.borderColor || theme.colors.primary, // Use passed borderColor or theme.primary
-    backgroundColor: props.backgroundColor || theme.colors.primary, 
-  },
-}));
+export default Button;
