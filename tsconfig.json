@@ -1,20 +1,24 @@
 {
   "compilerOptions": {
-    "outDir": "./dist",          
-    "rootDir": "./src",          
+    "outDir": "./dist", 
+    "rootDir": "./src", 
     "lib": ["esnext"], 
     "skipLibCheck": true, 
-    "target": "ESNext",
-    "module": "ESNext",
-    "moduleResolution": "node",
-    "jsx": "react-native",
-    "esModuleInterop": true,
-    "allowSyntheticDefaultImports": true,
-    "strict": true,
-    "baseUrl": "./",
+    "target": "ESNext", 
+    "module": "ESNext", 
+    "moduleResolution": "node", 
+    "jsx": "react-native", 
+    "esModuleInterop": true, 
+    "allowSyntheticDefaultImports": true, 
+    "strict": true, 
+    "baseUrl": "./", 
     "paths": {
-      "@rneui/themed": ["node_modules/@rneui/themed"]
-    }
+      "@rneui/themed": ["node_modules/@rneui/themed"] 
+    },
+    "declaration": true, 
+  
+    "emitDeclarationOnly": true 
   },
-  "include": ["src/**/*.ts", "src/**/*.tsx"]
+  "include": ["src/**/*.ts", "src/**/*.tsx"], 
+  "exclude": ["node_modules", "dist"] 
 }
