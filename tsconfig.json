@@ -16,7 +16,7 @@
       "@rneui/themed": ["node_modules/@rneui/themed"] 
     },
     "declaration": true, 
-  
+    "declarationMap": false, 
     "emitDeclarationOnly": true 
   },
   "include": ["src/**/*.ts", "src/**/*.tsx"], 
