@@ -1,6 +1,6 @@
 {
   "name": "mtp-shared",
-  "version": "2.0.2",
+  "version": "1.0.1",
   "description": "A shared library of reusable React Native components",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -24,5 +24,8 @@
     "typescript": "^5.0.4"
   },
   "license": "ISC",
-  "author": ""
+  "author": "MK",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/manthanmk66/mtp-shared"}
 }
