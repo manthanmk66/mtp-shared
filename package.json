@@ -1,6 +1,6 @@
 {
   "name": "mtp-shared",
-  "version": "1.0.2",
+  "version": "1.1.0",
   "description": "A shared library of reusable React Native components",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
